@@ -45,12 +45,12 @@ public class Pestaña extends JFrame {
         lblUsuario.setFont(new Font("Arial", Font.PLAIN, 14)); //tipo de letra
         panel.add(lblUsuario);
 
-        // TEXTFIELD USUARIO
+        // usuario
         JTextField txtUsuario = new JTextField();
         txtUsuario.setBounds(50, 130, 280, 30);
         panel.add(txtUsuario);
 
-        // LABEL CONTRASEÑA
+        //Boton contraseña
         JLabel lblPassword = new JLabel("Contraseña:");
         lblPassword.setBounds(50, 180, 200, 25);
         lblPassword.setForeground(Color.WHITE);
