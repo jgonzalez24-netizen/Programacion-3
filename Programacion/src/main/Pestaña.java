@@ -10,187 +10,107 @@ import javax.swing.JRadioButton;
 					
 public class Pestaña extends JFrame {
 
-	public Pestaña() {
+    public Pestaña() {
 
-        // configuracion Ventana
-        setTitle("Login");
-        setSize(400, 450);
+        setTitle("Sistema");
+        setSize(900, 500);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
 
-        // panel principal
-        JPanel panel = new JPanel();
-        panel.setBounds(0, 0, 400, 450);
-        panel.setBackground(new Color(30, 30, 60)); // azul oscuro
-        panel.setLayout(null);
-        add(panel);
+        login();
+        registro();
+        users();   
+
+        setVisible(true);
+    }
+
+    public void login() {
+
+        JPanel panelLogin = new JPanel();
+        panelLogin.setBounds(0, 0, 400, 450);
+        panelLogin.setBackground(new Color(30, 30, 60));
+        panelLogin.setLayout(null);
+        this.add(panelLogin);
+
+        panelLogin.setVisible(false); // oculto
+    }
+
+    public void registro() {
+
+        JPanel panelRegistro = new JPanel();
+        panelRegistro.setBounds(400, 0, 400, 450);
+        panelRegistro.setBackground(new Color(25, 42, 86));
+        panelRegistro.setLayout(null);
+        this.add(panelRegistro);
+
+        panelRegistro.setVisible(false); //oculto
+    }
+    public void users() {
+
+        JPanel panel_user = new JPanel();
+        panel_user.setSize(900, 500);
+        panel_user.setLocation(50, 50);
+        panel_user.setBackground(new Color(220, 230, 240));
+        panel_user.setLayout(null);
+        this.add(panel_user);
 
         // titulo
-        JLabel titulo = new JLabel("INICIAR SESIÓN");
-        titulo.setBounds(90, 30, 220, 40);
-        titulo.setForeground(Color.WHITE);
-        titulo.setFont(new Font("Arial", Font.BOLD, 22)); //tipo de letra
-        titulo.setHorizontalAlignment(SwingConstants.CENTER);
-        panel.add(titulo);
+        JLabel titulo = new JLabel("Usuarios");
+        titulo.setBounds(50, 20, 400, 60);
+        titulo.setFont(new Font("Arial", Font.BOLD, 40));
+        titulo.setForeground(Color.BLACK);
+        panel_user.add(titulo);
 
-        // usuario(interfaz)
-        JLabel lblUsuario = new JLabel("Nombre de Usuario:");
-        lblUsuario.setBounds(50, 100, 200, 25);
-        lblUsuario.setForeground(Color.WHITE);
-        lblUsuario.setFont(new Font("Arial", Font.PLAIN, 14)); //tipo de letra
-        panel.add(lblUsuario);
+        // botones
+        JButton descargar = new JButton("Descargar");
+        descargar.setBounds(600, 40, 120, 35);
+        descargar.setFont(new Font("Arial", Font.PLAIN, 14));
+        panel_user.add(descargar);
 
-        // usuario
-        JTextField txtUsuario = new JTextField();
-        txtUsuario.setBounds(50, 130, 280, 30);
-        panel.add(txtUsuario);
+        JButton añadir = new JButton("Añadir");
+        añadir.setBounds(740, 40, 100, 35);
+        añadir.setFont(new Font("Arial", Font.PLAIN, 14));
+        panel_user.add(añadir);
 
-        //Boton contraseña
-        JLabel lblPassword = new JLabel("Contraseña:");
-        lblPassword.setBounds(50, 180, 200, 25);
-        lblPassword.setForeground(Color.WHITE);
-        lblPassword.setFont(new Font("Arial", Font.PLAIN, 14)); //tipo de letra
-        panel.add(lblPassword);
+        String[] table_head = {"ID","Nombre","Correo electrónico","Edad","Estado"};
 
-        // Contraseña
-        JPasswordField txtPassword = new JPasswordField();
-        txtPassword.setBounds(50, 210, 280, 30);
-        panel.add(txtPassword);
+        // dinámico solo lectura
+        javax.swing.table.DefaultTableModel modelo =
+                new javax.swing.table.DefaultTableModel(table_head, 0) {
+                    @Override
+                    public boolean isCellEditable(int row, int column) {
+                        return false;
+                    }
+                };
 
-        // boton "RECORDARME"
-        JCheckBox recordar = new JCheckBox("Recordarme");
-        recordar.setBounds(50, 260, 150, 25);
-        recordar.setForeground(Color.WHITE);
-        recordar.setBackground(new Color(30, 30, 60));
-        panel.add(recordar);
+        // Datos
+        modelo.addRow(new Object[]{"1", "Carlos Ramírez", "carlos.ramirez@gmail.com", 20, "Activo"});
+        modelo.addRow(new Object[]{"2", "María Hernández", "maria.hernandez@gmail.com", 22, "Inactivo"});
+        modelo.addRow(new Object[]{"3", "Luis García", "luis.garcia@gmail.com", 19, "Activo"});
+        modelo.addRow(new Object[]{"4", "Ana Martínez", "ana.martinez@gmail.com", 23, "Activo"});
+        modelo.addRow(new Object[]{"5", "Pedro López", "pedro.lopez@gmail.com", 21, "Activo"});
+        modelo.addRow(new Object[]{"6", "Sofía Torres", "sofia.torres@gmail.com", 24, "Inactivo"});
+        modelo.addRow(new Object[]{"7", "Jorge Mendoza", "jorge.mendoza@gmail.com", 20, "Activo"});
+        modelo.addRow(new Object[]{"8", "Valeria Cruz", "valeria.cruz@gmail.com", 22, "Activo"});
 
-        // boton acceder
-        JButton btnAcceder = new JButton("ACCEDER");
-        btnAcceder.setBounds(110, 310, 160, 40);
-        btnAcceder.setBackground(new Color(28, 118, 210)); // azul
-        btnAcceder.setForeground(Color.WHITE);
-        btnAcceder.setFont(new Font("Arial", Font.BOLD, 16)); //tipo de letra
-        btnAcceder.setFocusPainted(false);
-        panel.add(btnAcceder);
+        JTable students = new JTable(modelo);
+        students.setRowHeight(25);
+        students.setFont(new Font("Arial", Font.PLAIN, 13));
+        students.setForeground(Color.BLACK);
+        students.setBackground(Color.WHITE);
 
-        // accion del boton 
-        btnAcceder.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+        students.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 
-                String usuario = txtUsuario.getText();
-                String password = new String(txtPassword.getPassword());
+        // encabezado
+        javax.swing.table.JTableHeader header = students.getTableHeader();
+        header.setFont(new Font("Arial", Font.BOLD, 14));
+        header.setBackground(new Color(40, 40, 40)); 
+        header.setForeground(Color.WHITE);
 
-                if (usuario.equals("Jesus") && password.equals("12345")) {   //usuario y contraseña predeterminada
-                    JOptionPane.showMessageDialog(null, "Bienvenido");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
-                }
-            }
-        });
-        //panel de registro
-        JPanel rgs_contaniner = new JPanel();
-        rgs_contaniner.setBounds(400, 0, 400, 450);
-        rgs_contaniner.setBackground(new Color(25, 42, 86));
-        rgs_contaniner.setLayout(null);
-        this.add(rgs_contaniner);
-
-        JLabel tituloRegistro = new JLabel("REGISTRO");
-        tituloRegistro.setBounds(90, 15, 220, 45);
-        tituloRegistro.setHorizontalAlignment(SwingConstants.CENTER);
-        tituloRegistro.setOpaque(true);
-        tituloRegistro.setBackground(new Color(30, 30, 30));
-        tituloRegistro.setForeground(Color.WHITE);
-        tituloRegistro.setFont(new Font("Arial", Font.BOLD, 24));
-        rgs_contaniner.add(tituloRegistro);
-
-        JLabel lblNombreReg = new JLabel("NOMBRE DE USUARIO:");
-        lblNombreReg.setBounds(50, 75, 300, 28);
-        lblNombreReg.setOpaque(true);
-        lblNombreReg.setBackground(new Color(255, 200, 0));
-        lblNombreReg.setHorizontalAlignment(SwingConstants.CENTER);
-        lblNombreReg.setFont(new Font("Arial", Font.BOLD, 13));
-        rgs_contaniner.add(lblNombreReg);
-
-        JTextField txtNombreReg = new JTextField();
-        txtNombreReg.setBounds(50, 108, 300, 28);
-        txtNombreReg.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-        rgs_contaniner.add(txtNombreReg);
-
-        JLabel bio_tag = new JLabel("BIO");
-        bio_tag.setBounds(50, 145, 300, 25);
-        bio_tag.setHorizontalAlignment(SwingConstants.CENTER);
-        bio_tag.setFont(new Font("Arial", Font.BOLD, 14));
-        bio_tag.setForeground(Color.WHITE);
-        rgs_contaniner.add(bio_tag);
-
-        JTextArea bio_text = new JTextArea();
-        bio_text.setBounds(50, 175, 300, 65);
-        bio_text.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-        rgs_contaniner.add(bio_text);
-
-        JLabel preferencias = new JLabel("Preferencias");
-        preferencias.setBounds(50, 250, 300, 25);
-        preferencias.setHorizontalAlignment(SwingConstants.CENTER);
-        preferencias.setFont(new Font("Arial", Font.BOLD, 14));
-        preferencias.setForeground(Color.WHITE);
-        rgs_contaniner.add(preferencias);
-
-        JCheckBox opt_sweet = new JCheckBox("Dulces");
-        opt_sweet.setBounds(50, 280, 90, 25);
-        opt_sweet.setBackground(new Color(60, 180, 170));
-        rgs_contaniner.add(opt_sweet);
-
-        JCheckBox opt_salty = new JCheckBox("Salado");
-        opt_salty.setBounds(155, 280, 90, 25);
-        opt_salty.setBackground(new Color(60, 180, 170));
-        rgs_contaniner.add(opt_salty);
-
-        JCheckBox opt_healthy = new JCheckBox("Saludable");
-        opt_healthy.setBounds(260, 280, 100, 25);
-        opt_healthy.setBackground(new Color(60, 180, 170));
-        rgs_contaniner.add(opt_healthy);
-
-        JLabel terminosLabel = new JLabel("TÉRMINOS");
-        terminosLabel.setBounds(50, 310, 300, 25);
-        terminosLabel.setOpaque(true);
-        terminosLabel.setBackground(new Color(255, 200, 0));
-        terminosLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        terminosLabel.setFont(new Font("Arial", Font.BOLD, 14));
-        rgs_contaniner.add(terminosLabel);
-
-        JRadioButton accept_terms = new JRadioButton("Acepto los términos");
-        accept_terms.setBounds(50, 340, 160, 25);
-        accept_terms.setBackground(new Color(60, 180, 170));
-        rgs_contaniner.add(accept_terms);
-
-        JRadioButton reject_terms = new JRadioButton("No acepto los términos");
-        reject_terms.setBounds(210, 340, 180, 25);
-        reject_terms.setBackground(new Color(60, 180, 170));
-        rgs_contaniner.add(reject_terms);
-
-        ButtonGroup terms = new ButtonGroup();
-        terms.add(accept_terms);
-        terms.add(reject_terms);
-
-        String[] colonias = {"Camino Real", "Arcoiris", "8 de Octubre"};
-        JComboBox colonias_combos = new JComboBox(colonias);
-        colonias_combos.setBounds(50, 370, 300, 28);
-        colonias_combos.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-        rgs_contaniner.add(colonias_combos);
-
-        JButton register_btn = new JButton("Crear cuenta");
-        register_btn.setBounds(50, 405, 300, 35);
-        register_btn.setFont(new Font("Arial", Font.BOLD, 16));
-        register_btn.setBackground(Color.WHITE);
-        register_btn.setFocusPainted(false);
-        register_btn.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-        rgs_contaniner.add(register_btn);
-        
-        
-        setVisible(true);
-        
-        
-        this.repaint();
+        JScrollPane final_table = new JScrollPane(students);
+        final_table.setSize(800, 250);
+        final_table.setLocation(50, 110);
+        panel_user.add(final_table);
     }
 }
