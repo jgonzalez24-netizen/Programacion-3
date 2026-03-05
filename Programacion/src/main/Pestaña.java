@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.JRadioButton;
+import javax.swing.JMenuBar;
 					
 public class Pestaña extends JFrame {
 
@@ -17,7 +18,35 @@ public class Pestaña extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
+        	
+        //barra
+        JMenuBar barra = new JMenuBar();
+        this.setJMenuBar(barra);
 
+        JMenu menu1 = new JMenu("Archivo");
+        barra.add(menu1);
+
+        JMenuItem opt1_mi = new JMenuItem("Abrir");
+        menu1.add(opt1_mi);   
+
+        JMenuItem opt2_mi = new JMenuItem("Nuevo");
+        menu1.add(opt2_mi);
+
+        JMenuItem opt3_mi = new JMenuItem("Cerrar");
+        menu1.add(opt3_mi);
+
+        menu1.addSeparator();
+        
+        JMenu menu2 = new JMenu("Guardar");
+        menu1.add(menu2);
+        
+        JMenu opt4_mi = new JMenu("Guardar");
+        menu2.add(opt4_mi);
+        
+        JMenu opt5_mi = new JMenu("Guardar como");
+        menu2.add(opt5_mi);
+        
+        
         login();
         registro();
         users();   
@@ -25,7 +54,12 @@ public class Pestaña extends JFrame {
         setVisible(true);
     }
 
-    public void login() {
+    private void JMenu() {
+
+		
+	}
+
+	public void login() {
 
         JPanel panelLogin = new JPanel();
         panelLogin.setBounds(0, 0, 400, 450);
@@ -113,4 +147,6 @@ public class Pestaña extends JFrame {
         final_table.setLocation(50, 110);
         panel_user.add(final_table);
     }
+    
+    
 }
