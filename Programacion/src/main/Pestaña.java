@@ -5,9 +5,13 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.JRadioButton;
 import javax.swing.JMenuBar;
+
 					
 public class Pestaña extends JFrame {
 
@@ -18,6 +22,14 @@ public class Pestaña extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
+        
+        try {
+        	Image iconImage = ImageIO.read(getClass().getResource("/imagen/gato.png"));
+        	this.setIconImage(iconImage);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
         	
         //barra
         JMenuBar barra = new JMenuBar();
