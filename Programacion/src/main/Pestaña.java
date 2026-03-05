@@ -74,7 +74,7 @@ public class Pestaña extends JFrame {
         panelLogin.setBounds(0, 0, 400, 450);
         panelLogin.setLayout(null);
         this.add(panelLogin);
-
+        
         ImageIcon fondo = new ImageIcon(getClass().getResource("/imagen/fondo.jpg"));
         JLabel fondoLabel = new JLabel(fondo);
         fondoLabel.setBounds(0, 0, 400, 450);
