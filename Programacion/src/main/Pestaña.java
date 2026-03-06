@@ -9,8 +9,6 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.JRadioButton;
-import javax.swing.JMenuBar;
 
 public class Pestaña extends JFrame {
 
@@ -30,10 +28,10 @@ public class Pestaña extends JFrame {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        login();
-        registro();
-        users();
+       // login();
+       // registro();
+        
+        calculadora();  
 
         setVisible(true);
     }
@@ -346,8 +344,47 @@ public class Pestaña extends JFrame {
         panel_user.add(final_table);
     }
     
+
+
+    	public void calculadora()   {
+    		JPanel Panel_users = new JPanel();
+    	    Panel_users.setSize(500, 500);
+    	    Panel_users.setLocation(250, 50);
+    	    Panel_users.setBackground(Color.black);
+    	    Panel_users.setLayout(null);
+    	    this.add(Panel_users);
+
+    	    JLabel field = new JLabel("180.00");
+    	    field.setSize(480, 40);
+    	    field.setLocation(10, 10);
+    	    field.setOpaque(true);
+    	    field.setBackground(Color.white);
+    	    field.setFont(new Font("Arial", Font.BOLD, 22));
+    	    field.setBorder(BorderFactory.createEmptyBorder(10,20,10,20));
+    	    Panel_users.add(field);
+
+    	    int cor_x = 10, cor_y = 60;
+
+    	    String[] botones = {
+    	        "7","8","9","/",
+    	        "4","5","6","*",
+    	        "1","2","3","-",
+    	        "0","C","=","+"
+    	    };
+
+    	    for(int i = 0; i < 16; i++) {
+
+    	        JButton ce = new JButton(botones[i]);
+    	        ce.setSize(100, 100);
+    	        ce.setLocation(cor_x, cor_y);
+    	        Panel_users.add(ce);
+
+    	        cor_x += 110;
+
+    	        if(cor_x >= 420) {
+    	            cor_x = 10;
+    	            cor_y += 110;
+    	        }
+    	    }
+    	}
 }
-
-
-
-
