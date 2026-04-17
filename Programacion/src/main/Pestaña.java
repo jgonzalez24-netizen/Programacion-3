@@ -1,8 +1,6 @@
 package main;
 
 import java.awt.Color;
-import javax.swing.JPanel;
-
 import java.awt.Font;
 import java.awt.*;
 import java.awt.event.*;
@@ -10,10 +8,12 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
 
 public class Pestaña extends JFrame {
 
-    JTextField usuario;
+   JTextField usuario;
     JPasswordField password;
 
     JTextField txtNombreReg;
@@ -55,7 +55,27 @@ public class Pestaña extends JFrame {
 
         if (target.equals("registrarse"))
             this.registro();
+        
+        if (target.equals("recuperacion"))
+            this.recuperacion(); 
 
+        if (target.equals("alta")) 
+            this.altaUsuario(); 
+
+        if (target.equals("baja"))
+            this.bajaUsuario();
+
+        if (target.equals("consulta")) 
+            this.consultarUsuario(); 
+
+        if (target.equals("ayuda_crear")) 
+            this.ayudaCrearUsuario(); 
+
+        if (target.equals("ayuda_acceso")) 
+            this.ayudaAccesoSistema();
+
+        if (target.equals("ayuda_recuperar"))  
+            this.ayudaRecuperarContraseña();
         this.repaint();
         this.revalidate();
     }
@@ -103,9 +123,17 @@ public class Pestaña extends JFrame {
         JButton registrarse = new JButton("Registrarse");
         registrarse.setBounds(140, 290, 120, 35);
         fondoLabel.add(registrarse);
+        
+        JButton recuperar = new JButton("Recuperar"); 
+        recuperar.setBounds(140, 340, 120, 35); 
+        fondoLabel.add(recuperar);
 
         registrarse.addActionListener(e -> {
             router("registrarse");
+        });
+        
+        recuperar.addActionListener(e -> { 
+            router("recuperacion"); 
         });
 
         ingresar.addActionListener(e -> {
@@ -287,6 +315,92 @@ public class Pestaña extends JFrame {
             }
         });
     }
+    
+    public void recuperacion() { 
+        JPanel panel = new JPanel();
+        panel.setBounds(0,0,400,450); 
+        panel.setLayout(null); 
+        panel.setBackground(new Color(52, 152, 219)); 
+        this.add(panel); 
+
+        JLabel titulo = new JLabel("Recuperar Contraseña");
+        titulo.setBounds(50,30,300,40);
+        titulo.setHorizontalAlignment(JLabel.CENTER);
+        titulo.setFont(new Font("Arial",Font.BOLD,22)); 
+        panel.add(titulo); 
+
+        JTextField correo = new JTextField(); 
+        correo.setBounds(50,100,300,30);
+        panel.add(correo); 
+        JButton volver = new JButton("Volver"); 
+        volver.setBounds(50,150,300,30); 
+        panel.add(volver);
+
+        volver.addActionListener(e -> router("login"));
+    }
+    public JPanel ayudaUsuario (String tituloTxt) {
+        JPanel panel = new JPanel();
+        panel.setBounds(0,0,400,450);
+        panel.setLayout(null);
+        this.add(panel);
+
+        JLabel titulo = new JLabel(tituloTxt);
+        titulo.setBounds(50,20,300,40);
+        titulo.setHorizontalAlignment(JLabel.CENTER);
+        titulo.setFont(new Font("Arial",Font.BOLD,22));
+        panel.add(titulo);
+
+        JButton volver = new JButton("Volver");
+        volver.setBounds(50,350,300,30);
+        panel.add(volver);
+
+        volver.addActionListener(e -> router("login"));
+
+        return panel;
+    }
+
+    public void altaUsuario() {
+        JPanel panel = ayudaUsuario ("Dar de alta");
+        JTextField t = new JTextField();
+        t.setBounds(50,100,300,30);
+        panel.add(t);
+    }
+
+    public void bajaUsuario() {
+        JPanel panel = ayudaUsuario ("Dar de baja");
+        JTextField t = new JTextField();
+        t.setBounds(50,100,300,30);
+        panel.add(t);
+    }
+
+    public void consultarUsuario() {
+        JPanel panel = ayudaUsuario ("Consultar Usuario");
+        JTextField t = new JTextField();
+        t.setBounds(50,100,300,30);
+        panel.add(t);
+    }
+
+    public void ayudaCrearUsuario() {
+        JPanel panel = ayudaUsuario ("Ayudar a crear usuario");
+        JTextArea t = new JTextArea();
+        t.setBounds(50,100,300,150);
+        panel.add(t);
+    }
+
+    public void ayudaAccesoSistema() {
+        JPanel panel = ayudaUsuario ("Ayuda acceso sistema");
+        JTextArea t = new JTextArea();
+        t.setBounds(50,100,300,150);
+        panel.add(t);
+    }
+
+    public void ayudaRecuperarContraseña() {
+        JPanel panel = ayudaUsuario ("Ayuda recuperar contraseña");
+        JTextArea t = new JTextArea();
+        t.setBounds(50,100,300,150);
+        panel.add(t);
+    }
+    
 
     public void menu() {
 
@@ -295,25 +409,46 @@ public class Pestaña extends JFrame {
         JMenu archivo = new JMenu("Archivo");
         JMenu ayuda = new JMenu("Ayuda");
         JMenu cuenta = new JMenu("Cuenta");
+        JMenu usuarios = new JMenu("Usuarios"); 
 
         JMenuItem acceder = new JMenuItem("Acceder");
         JMenuItem registrar = new JMenuItem("Registrar");
+        JMenuItem recuperar = new JMenuItem("Recuperar");
 
         acceder.addActionListener(e -> {
             router("login");
         });
 
         registrar.addActionListener(e -> {
-            router("registrarse");
+            router("registrarse");    
         });
+        
+        recuperar.addActionListener(e -> {
+            router("recuperacion"); 
+        }); 
+
+        
 
         cuenta.add(acceder);
         cuenta.add(registrar);
+        cuenta.add(recuperar); 
+        
+        JMenuItem alta = new JMenuItem("Alta");
+        JMenuItem baja = new JMenuItem("Baja"); 
+        JMenuItem consulta = new JMenuItem("Consultar"); 
+
+        alta.addActionListener(e -> router("alta")); 
+        baja.addActionListener(e -> router("baja")); 
+        consulta.addActionListener(e -> router("consulta"));
+        usuarios.add(alta);
+        usuarios.add(baja);
+        usuarios.add(consulta); 
 
         menuBar.add(archivo);
         menuBar.add(ayuda);
         menuBar.add(cuenta);
+        menuBar.add(usuarios);
 
         setJMenuBar(menuBar);
-    }
+    }  
 }
