@@ -109,7 +109,7 @@ public class RegisterView extends JFrame {
         txtPass.setBounds(50, 305, 200, 35);
         txtPass.setForeground(Color.LIGHT_GRAY);
         txtPass.setEchoChar((char) 0);
-        addPlaceholderToSecretField(txtPass, "Minimo 8 digitos");
+        EchoChar(txtPass, "Minimo 8 digitos");
         contenedor.add(txtPass);
 
         JLabel lblConf = new JLabel("Confirmar Contraseña");
@@ -175,8 +175,8 @@ public class RegisterView extends JFrame {
         });
         return field;
     }
-
-    private void addPlaceholderToSecretField(JPasswordField field, String placeholder) {
+    	//censura la contraseña
+    private void EchoChar(JPasswordField field, String placeholder) {
         field.addFocusListener(new FocusListener() {
             public void focusGained(FocusEvent e) {
                 String pass = new String(field.getPassword());
