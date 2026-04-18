@@ -79,6 +79,6 @@ public class Memorice extends JFrame {
         panelSur.add(reiniciar);
 
         JButton pausa = new JButton("Pausa");
-        panelSur.add(pausa);
+        panelSur.add(pausa); 
     }
 }
