@@ -153,6 +153,11 @@ public class RegisterView extends JFrame {
         btnRegistrar.setForeground(Color.WHITE);
         btnRegistrar.setFont(new Font("SansSerif", Font.BOLD, 16));
         contenedor.add(btnRegistrar);
+        
+        btnRegistrar.addActionListener(e -> {
+            new Confirmacion().setVisible(true);
+            dispose();
+        });
     }
 
     private JTextField createPlaceholderField(String placeholder, int x, int y, int w, int h) {
