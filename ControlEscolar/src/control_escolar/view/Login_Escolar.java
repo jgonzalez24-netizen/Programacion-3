@@ -30,6 +30,11 @@ public class Login_Escolar extends JFrame {
         btnAtras.setFocusable(false);
         btnAtras.setBorderPainted(false);
         add(btnAtras);
+        
+        btnAtras.addActionListener(e -> {
+            new LoginView().setVisible(true);
+            dispose();
+        });
 
         lblTitulo = new JLabel("CONTROL ESCOLAR", SwingConstants.CENTER);
         lblTitulo.setBounds(50, 60, 300, 40);
@@ -114,14 +119,21 @@ public class Login_Escolar extends JFrame {
     }
 
     private void validarLogin() {
+
         String correo = txtCorreo.getText().trim();
         String contraseña = txtPassword.getText().trim();
-        
-        if (correo.equals("admin") && contraseña.equals("123")) {  //usuario y contraseña provicional
+
+        if (correo.equals("admin") && contraseña.equals("123")) {//usuario y contraseña provicional
         	
-            Mensaje_validacion(null, "Sesión iniciada con Éxito", new Color(202, 240, 185), Color.BLACK);
+            Mensaje_validacion(null,"Sesión iniciada con Éxito",new Color(202, 240, 185),Color.BLACK);
+
+            new Dashboard().setVisible(true);
+            dispose();
+
         } else {
-        	Mensaje_validacion("ERROR", "Correo o contraseña incorrectos", new Color(170, 170, 170), new Color(224, 69, 69));
+
+            Mensaje_validacion("ERROR",
+                    "Correo o contraseña incorrectos",new Color(170, 170, 170),new Color(224, 69, 69));
         }
     }
     

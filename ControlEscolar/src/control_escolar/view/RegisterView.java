@@ -146,6 +146,11 @@ public class RegisterView extends JFrame {
         btnAtras.setBackground(new Color(171, 166, 166));
         btnAtras.setForeground(Color.BLACK);
         contenedor.add(btnAtras);
+        
+        btnAtras.addActionListener(e -> {
+            new LoginView().setVisible(true);
+            dispose();
+        });
 
         JButton btnRegistrar = new JButton("Registrarse");
         btnRegistrar.setBounds(620, 570, 160, 45);

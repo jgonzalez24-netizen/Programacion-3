@@ -8,7 +8,7 @@ public class Dashboard extends JFrame {
     private JPanel menuLateral;
     private JPanel barraSuperior;
     private JPanel contenidoPrincipal;
-    private JPanel panelAlumnos, panelDocentes, panelCursos, panelIngresos;
+    private JButton panelAlumnos, panelDocentes, panelCursos, panelIngresos;
 
     public Dashboard() {
 
@@ -68,6 +68,11 @@ public class Dashboard extends JFrame {
         btnCerrar.setFont(new Font("SansSerif", Font.BOLD, 12));
         menuLateral.add(btnCerrar);
 
+        btnCerrar.addActionListener(e -> {
+            new LoginView().setVisible(true);
+            dispose();
+        });
+
         contenidoPrincipal = new JPanel();
         contenidoPrincipal.setBounds(180, 80, 820, 620);
         contenidoPrincipal.setBackground(new Color(140, 145, 155));
@@ -100,20 +105,17 @@ public class Dashboard extends JFrame {
         contenidoPrincipal.add(panelIngresos);
     }
 
-    private JPanel crearTarjeta(String texto, Color color, int x) {
+    private JButton crearTarjeta(String texto, Color color, int x) {
 
-        JPanel p = new JPanel();
-        p.setLayout(null);
-        p.setBounds(x, 150, 180, 100);
-        p.setBackground(color);
+        JButton boton = new JButton(texto);
+        boton.setBounds(x, 150, 180, 100);
+        boton.setBackground(color);
+        boton.setForeground(Color.WHITE);
+        boton.setFont(new Font("Arial", Font.BOLD, 12));
+        boton.setFocusPainted(false);
+        boton.setBorder(null);
 
-        JLabel lbl = new JLabel(texto);
-        lbl.setBounds(10, 10, 160, 20);
-        lbl.setForeground(Color.WHITE);
-        lbl.setFont(new Font("Arial", Font.BOLD, 12));
-        p.add(lbl);
-
-        return p;
+        return boton;
     }
 
     public static void main(String[] args) {

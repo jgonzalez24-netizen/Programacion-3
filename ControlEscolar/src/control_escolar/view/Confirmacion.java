@@ -44,5 +44,10 @@ public class Confirmacion extends JFrame {
         btnDashboard.setForeground(Color.WHITE);
         btnDashboard.setFocusPainted(false);
         add(btnDashboard);
+        
+        btnDashboard.addActionListener(e -> {
+            new Dashboard().setVisible(true);
+            dispose();
+        });
     }
 }

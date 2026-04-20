@@ -1,21 +1,20 @@
 package control_escolar.view;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 
 public class DetallesAlumno extends JFrame {
 
-    Color azul1 = Color.decode("#0829AD");
-    Color azulOscuro = Color.decode("#1E2864");
-    Color grisFondo = Color.decode("#D2CDCD");
-    Color grisInput = Color.decode("#ABA6A6");
+    Color azul1 = Color.decode("#2F45FF");
+    Color azulOscuro = Color.decode("#1C2454");
+    Color grisFondo = Color.decode("#C9CCD3");
+    Color grisInput = Color.decode("#A8A8A8");
     Color blanco = Color.decode("#FFFFFF");
-    Color blancoSuave = Color.decode("#FFFBFB");
-    Color rojo = Color.decode("#E04545");
+    Color blancoSuave = Color.decode("#F4F4F4");
+    Color rojo = Color.decode("#D93025");
 
     public DetallesAlumno() {
+
         setTitle("Sistema");
         setSize(1000, 750);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -42,7 +41,12 @@ public class DetallesAlumno extends JFrame {
         salir.setBounds(0, 650, 200, 50);
         salir.setBackground(grisFondo);
         menu.add(salir);
-
+        
+        salir.addActionListener(e -> {
+            new LoginView().setVisible(true);
+            dispose();
+        });
+        
         JPanel top = new JPanel(null);
         top.setBounds(200, 0, 800, 150);
         top.setBackground(blanco);
@@ -51,7 +55,7 @@ public class DetallesAlumno extends JFrame {
         JLabel titulo = new JLabel("AGREGAR ALUMNO", SwingConstants.CENTER);
         titulo.setBounds(0, 60, 800, 40);
         titulo.setForeground(azul1);
-        titulo.setFont(new Font("Serif", 0, 30));
+        titulo.setFont(new Font("Serif", Font.BOLD, 30));
         top.add(titulo);
 
         JPanel base = new JPanel(null);
@@ -118,6 +122,7 @@ public class DetallesAlumno extends JFrame {
         head.add(baja);
 
         String[] col = {"Nombres", "Apellidos", "Telefono", "Carrera"};
+
         Object[][] data = {
                 {"Laura", "Morales", "76442260", "Derecho"},
                 {"Gabriela", "González", "255456280", "Sistemas"},
@@ -125,18 +130,8 @@ public class DetallesAlumno extends JFrame {
                 {"Luis", "Castellano", "76442260", "Derecho"}
         };
 
-        DefaultTableModel tablaAlumnos = new DefaultTableModel(data, col);
-        JTable tabla = new JTable(tablaAlumnos);
+        JTable tabla = new JTable(data, col);
         tabla.setRowHeight(40);
-
-        tabla.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
-            public Component getTableCellRendererComponent(JTable t, Object v, boolean s, boolean f, int r, int c) {
-                Component comp = super.getTableCellRendererComponent(t, v, s, f, r, c);
-                comp.setBackground(r % 2 == 0 ? new Color(210,210,210) : new Color(240,240,240));
-                comp.setForeground(Color.BLACK);
-                return comp;
-            }
-        });
 
         JScrollPane sp = new JScrollPane(tabla);
         sp.setBounds(0, 35, 520, 205);
@@ -147,7 +142,7 @@ public class DetallesAlumno extends JFrame {
         acciones.setBackground(blanco);
         zonaTabla.add(acciones);
 
-        for (int i = 0; i < tablaAlumnos.getRowCount(); i++) {
+        for (int i = 0; i < data.length; i++) {
 
             int y = i * 40;
 

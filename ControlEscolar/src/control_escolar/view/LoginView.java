@@ -35,21 +35,29 @@ public class LoginView extends JFrame {
         frase.setHorizontalAlignment(SwingConstants.CENTER);
         add(frase);
         
-        //login
         JButton btnLogin = new JButton("Iniciar sesión");
         btnLogin.setBounds(120, 320, 250, 45);
         btnLogin.setBackground(new Color(8, 41, 173));
         btnLogin.setForeground(Color.WHITE);
         btnLogin.setFont(new Font("Serif", Font.BOLD, 18));
         add(btnLogin);
+        
+        btnLogin.addActionListener(e -> {
+            new Login_Escolar().setVisible(true);
+            dispose();
+        });
 
-        //registro
         JButton btnRegistro = new JButton("Registrarse");
         btnRegistro.setBounds(120, 390, 250, 45);
         btnRegistro.setBackground(new Color(8, 41, 173));
         btnRegistro.setForeground(Color.WHITE);
         btnRegistro.setFont(new Font("Serif", Font.BOLD, 18));
         add(btnRegistro);
+        
+        btnRegistro.addActionListener(e -> {
+            new RegisterView().setVisible(true);
+            dispose();
+        });
 
     }
 
