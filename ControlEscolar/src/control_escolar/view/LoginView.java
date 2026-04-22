@@ -16,11 +16,23 @@ public class LoginView extends JFrame {
         setLayout(null);
         
         JLabel logo = new JLabel();
-        ImageIcon icon = new ImageIcon("src/main/resources/logo_control_escolar.png"); 
-        logo.setIcon(new ImageIcon(icon.getImage().getScaledInstance(400, 200, Image.SCALE_SMOOTH)));
-        logo.setBounds(50, 10, 400, 200);
-        add(logo);
-        
+        try {
+            java.net.URL imgURL = getClass().getResource("/imagenes/Logo.png");
+            
+            if (imgURL != null) {
+                ImageIcon icon = new ImageIcon(imgURL);
+                Image scaledImg = icon.getImage().getScaledInstance(330, 191, Image.SCALE_SMOOTH);
+                logo.setIcon(new ImageIcon(scaledImg));
+                logo.setBounds(85, 10, 330, 191);
+            } else {
+                logo.setText("Logo no encontrado en /imagenes/Logo.png");
+                logo.setBounds(50, 10, 400, 200);
+                logo.setHorizontalAlignment(SwingConstants.CENTER);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        add(logo);        
         getContentPane().setBackground(new Color(210, 205, 205));
         
         JLabel titulo = new JLabel("Bienvenido a EduGestor");
