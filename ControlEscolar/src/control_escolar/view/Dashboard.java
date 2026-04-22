@@ -60,7 +60,22 @@ public class Dashboard extends JFrame {
             btn.setFont(new Font("SansSerif", Font.BOLD, 14));
             btn.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.DARK_GRAY));
             menuLateral.add(btn);
+            
+            if (opciones[i].equals("Estudiantes")) {
+                btn.addActionListener(e -> {
+                    new DetallesAlumno().setVisible(true);
+                    dispose();
+                });
+            }
+
+            if (opciones[i].equals("Docentes")) {
+                btn.addActionListener(e -> {
+                    new Docentes().setVisible(true);
+                    dispose();
+                });
+            }
         }
+
 
         JButton btnCerrar = new JButton("Cerrar Sesion");
         btnCerrar.setBounds(0, 600, 180, 60);
